@@ -7,6 +7,34 @@
 #include <string.h>
 #include <stdbool.h>
 
+
+/* ---- portability shim for strdup/fileno on strict C/Windows ---- */
+#if defined(_WIN32)
+  #define _CRT_SECURE_NO_WARNINGS
+  #include <io.h>
+  #define fileno _fileno
+  #ifndef strdup
+    #define strdup _strdup
+  #endif
+#endif
+
+/* Fallback if strdup prototype is still missing */
+#ifndef HAVE_STRDUP_FALLBACK
+#define HAVE_STRDUP_FALLBACK
+static char* vlang_strdup_fallback(const char* s) {
+    size_t n = strlen(s) + 1;
+    char *p = (char*)malloc(n);
+    if (p) memcpy(p, s, n);
+    return p;
+}
+#ifndef strdup
+  #define strdup vlang_strdup_fallback
+#endif
+#endif
+
+
+
+
 FILE *out;
 void yyerror(const char *s);
 int  yylex();

@@ -2,7 +2,7 @@
 LEX     = flex
 YACC    = bison
 CC      = gcc
-CFLAGS  = -Wall -std=c11
+CFLAGS  = -Wall -std=c11 -D_DEFAULT_SOURCE -D_POSIX_C_SOURCE=200809L
 
 all: vlang.exe
 
