@@ -1,0 +1,132 @@
+Vlang Compiler (Vlang → C Translator)
+📌 Overview
+This project implements a compiler for Vlang, a simple domain-specific language (DSL) designed to manipulate integer scalars and vectors with expressive syntax. The compiler translates Vlang programs into C code, which is then compiled and executed.
+
+🎯 Features
+Scalar (scl) and Vector (vec) types
+
+Vector operations: elementwise arithmetic, dot product
+
+Indexing and slicing: vec:scl, vec:vec, nested indexing
+
+Control flow: if and loop statements
+
+print statements for scalars and vectors
+
+Literal vectors: [1, 2, 3, ...]
+
+Full code generation to output.c
+
+Includes standard runtime.c with vector utility functions
+
+🚀 How It Works
+Lexical Analysis: implemented via lexer.l (Flex)
+
+Parsing and Code Generation: handled by parser.y (Bison/Yacc)
+
+C Code Output: emitted as output.c
+
+Final Executable: compiled using GCC into program.exe
+
+🛠️ Build Instructions
+Prerequisites
+Windows OS (tested)
+
+Flex & Bison for Windows
+
+GCC (e.g., via MinGW)
+
+Compile the Compiler
+
+make
+Generate C Output from Vlang Program
+
+make generate
+This will compile the vlang compiler and run:
+
+
+./vlang.exe < example.vlang
+The resulting output.c is written to disk.
+
+Compile the C Output
+
+gcc -Wall -std=c11 -o program.exe output.c runtime.c
+Or use the shortcut:
+
+
+make test
+Which performs:
+
+Compilation of the compiler
+
+Translation of the example
+
+Compilation of the C code
+
+Running the final program.exe
+
+📄 File Structure
+File	Description
+lexer.l	Flex lexer for tokenizing Vlang syntax
+parser.y	Bison parser with C code generation
+runtime.c/h	Runtime functions for vector operations
+example.vlang	Sample Vlang source code
+output.c	Generated C source code
+program.exe	Final executable of compiled program
+Makefile	Automates the build/test process
+
+🧪 Example Output
+Given a Vlang program that performs vector arithmetic, rotation, and dot products, the compiler generates C code which produces correct numerical results, such as:
+
+
+V1<dot>V2: 150
+v1 now: [0, 15, 2, 15]
+v2 indexed: [1, 0, 3, 0]
+...
+✅ Tests
+To test compilation correctness and runtime behavior, run:
+
+make test
+Make sure to check:
+
+Vector length matches
+
+No syntax errors
+
+Valid assignments and indexing
+
+📦 Submission Requirements
+The project includes:
+
+ lexer.l
+
+ parser.y
+
+ runtime.c, runtime.h
+
+ Makefile
+
+ example.vlang
+
+ output.c (generated)
+
+ program.exe (compiled)
+
+ Demo video (compilation → execution)
+
+👨‍💻 Author
+Mohamed Hanif – Software Engineering Student @ Shenkar
+
+GitHub: Mohamedhanifprog
+
+📷 Demo
+A short video demonstrating: https://drive.google.com/file/d/1ZUHhL19mHO47TsxpxDEq2xDp9zki_4Z3/view?usp=sharing
+
+make
+
+Compilation to C
+
+Running the generated executable
+
+This compiler was built as a final project for Automata / Compilers course.
+

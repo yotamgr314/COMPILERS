@@ -1,0 +1,14 @@
+# Compiled files
+*.exe
+*.o
+*.obj
+*.out
+output.c
+lex.yy.c
+parser.tab.*
+# Generated files
+program.exe
+# Bison & Flex
+*.output
+# VSCode settings (if using)
+.vscode/
